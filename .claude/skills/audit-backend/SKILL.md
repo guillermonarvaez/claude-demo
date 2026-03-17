@@ -1,18 +1,18 @@
 ---
 name: audit-backend
-description: Audit pascal-app-backend code against architecture rules in CLAUDE.md. Use when reviewing PRs, validating new features, or checking that code follows the layered architecture (route → service → repository). Accepts a module name, file path, or "all" to audit everything.
+description: Audit DemosClaude code against architecture rules in CLAUDE.md. Use when reviewing PRs, validating new features, or checking that code follows the layered architecture (route → service → repository). Accepts a module name, file path, or "all" to audit everything.
 argument-hint: "[module-name|file-path|all]"
 ---
 
 # Backend Architecture Audit
 
-Audit `$ARGUMENTS` in pascal-app-backend against the Code Rules defined in `pascal-app-backend/CLAUDE.md`.
+Audit `$ARGUMENTS` in DemosClaude against the Code Rules defined in `DemosClaude/CLAUDE.md`.
 
 ## Procedure
 
 ### 1. Load rules and identify files
 
-Read `pascal-app-backend/CLAUDE.md` — it is the single source of truth for all rules. Then identify files to audit:
+Read `DemosClaude/CLAUDE.md` — it is the single source of truth for all rules. Then identify files to audit:
 
 - **Module name** (e.g., `nurturing`): all files in `src/{module}/` + related plugins
 - **File path**: that specific file
