@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sitio web de ejemplo con buenas prácticas de HTML, CSS y JavaScript."
+    />
+    <title>Mi Sitio Web</title>
+
+    <style>
+      :root {
+        --color-primary: #2563eb;
+        --color-primary-dark: #1d4ed8;
+        --color-bg: #f8fafc;
+        --color-surface: #ffffff;
+        --color-text: #0f172a;
+        --color-muted: #475569;
+        --color-border: #e2e8f0;
+        --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.08);
+        --radius: 16px;
+        --container: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--container));
+        margin-inline: auto;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        margin: 0 0 1rem;
+      }
+
+      .section-text {
+        color: var(--color-muted);
+        max-width: 700px;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 72px;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-primary);
+      }
+
+      .nav {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .nav a {
+        color: var(--color-muted);
+        font-weight: 600;
+      }
+
+      .nav a:hover,
+      .nav a:focus {
+        color: var(--color-primary);
+      }
+
+      .hero {
+        padding: 5rem 0 4rem;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.75rem);
+        line-height: 1.1;
+        margin: 0 0 1rem;
+      }
+
+      .hero p {
+        color: var(--color-muted);
+        font-size: 1.05rem;
+        margin-bottom: 1.5rem;
+        max-width: 600px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0.85rem 1.25rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--color-primary);
+        color: white;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background: var(--color-primary-dark);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--color-primary);
+        border-color: var(--color-border);
+      }
+
+      .btn-secondary:hover,
+      .btn-secondary:focus {
+        border-color: var(--color-primary);
+      }
+
+      .hero-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .hero-card h2 {
+        margin-top: 0;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .stat {
+        background: #eff6ff;
+        padding: 1rem;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--color-primary);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--color-muted);
+      }
+
+      .about-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .check-list {
+        padding-left: 1.25rem;
+        color: var(--color-muted);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 1rem;
+        max-width: 720px;
+        margin-top: 2rem;
+      }
+
+      .form-group {
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      label {
+        font-weight: 700;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        font: inherit;
+        background: white;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.2);
+        border-color: var(--color-primary);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .form-message {
+        margin-top: 0.5rem;
+        font-weight: 600;
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--color-border);
+        padding: 2rem 0;
+        color: var(--color-muted);
+        text-align: center;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+      }
+
+      .skip-link:focus {
+        left: 1rem;
+        top: 1rem;
+        background: black;
+        color: white;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        z-index: 2000;
+      }
+
+      @media (max-width: 900px) {
+        .hero-content,
+        .about-layout,
+        .features-grid,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-content {
+          flex-direction: column;
+          justify-content: center;
+          padding: 1rem 0;
+        }
+
+        .hero {
+          padding-top: 3rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <header class="site-header">
+      <div class="container header-content">
+        <a href="#" class="logo">MiMarca</a>
+
+        <nav class="nav" aria-label="Principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="inicio" class="hero">
+        <div class="container hero-content">
+          <div>
+            <h1>Construye una web limpia, moderna y mantenible</h1>
+            <p>
+              Este ejemplo está hecho con buenas prácticas: HTML semántico,
+              diseño responsive, accesibilidad básica y una estructura clara
+              para escalar fácilmente.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#contacto" class="btn btn-primary">Contáctanos</a>
+              <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Resumen del proyecto">
+            <h2>Buenas prácticas incluidas</h2>
+            <div class="stats">
+              <div class="stat">
+                <strong>100%</strong>
+                <span>Responsive</span>
+              </div>
+              <div class="stat">
+                <strong>HTML5</strong>
+                <span>Semántico</span>
+              </div>
+              <div class="stat">
+                <strong>Fácil</strong>
+                <span>De mantener</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="servicios" class="section">
+        <div class="container">
+          <h2 class="section-title">Nuestros servicios</h2>
+          <p class="section-text">
+            Una estructura sencilla pero profesional para presentar soluciones
+            de negocio, tecnología o productos digitales.
+          </p>
+
+          <div class="features-grid">
+            <article class="card">
+              <h3>Diseño Web</h3>
+              <p>
+                Interfaces claras, usables y orientadas a una mejor experiencia
+                de usuario.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Desarrollo Frontend</h3>
+              <p>
+                Componentes ordenados, código limpio y bases sólidas para crecer
+                el proyecto.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Optimización</h3>
+              <p>
+                Mejoras de rendimiento, accesibilidad y mantenibilidad desde el
+                inicio.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="nosotros" class="section">
+        <div class="container about-layout">
+          <div>
+            <h2 class="section-title">Sobre nosotros</h2>
+            <p class="section-text">
+              Este bloque muestra cómo estructurar contenido informativo con
+              buena semántica, separación visual y legibilidad.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Lo que cuidamos</h3>
+            <ul class="check-list">
+              <li>Estructura clara del contenido</li>
+              <li>Reutilización de estilos</li>
+              <li>Diseño adaptable a móvil</li>
+              <li>Accesibilidad básica</li>
+              <li>Base lista para escalar</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="section">
+        <div class="container">
+          <h2 class="section-title">Contáctanos</h2>
+          <p class="section-text">
+            Formulario simple con validación ligera en JavaScript.
+          </p>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Tu nombre"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="tucorreo@empresa.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Escribe tu mensaje"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Enviar mensaje
+            </button>
+
+            <p id="formMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 MiMarca. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.getElementById("contactForm");
+      const formMessage = document.getElementById("formMessage");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+          formMessage.textContent = "Por favor, completa todos los campos.";
+          formMessage.style.color = "#dc2626";
+          return;
+        }
+
+        formMessage.textContent =
+          "Mensaje enviado correctamente. Gracias por contactarnos.";
+        formMessage.style.color = "#16a34a";
+
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
